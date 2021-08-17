@@ -1,0 +1,21 @@
+{
+    "name": "payex/module-payment",
+    "description": "",
+    "license": "proprietary",
+    "authors": [
+        {
+            "email": "contact@payex.io",
+            "name": "Payex Ventures Sdn Bhd"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Payex\\Payment\\": ""
+        }
+    }
+}

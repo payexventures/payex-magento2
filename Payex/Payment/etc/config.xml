@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <default>
+        <payment>
+            <payex>
+                <active>1</active>
+                <payment_action>capture</payment_action> 
+                <model>Payex\Payment\Model\Vpos</model>
+                <title>Payex</title>
+                <order_status>pending</order_status>
+                <mode>production</mode>
+            </payex>
+        </payment>
+    </default>
+</config>

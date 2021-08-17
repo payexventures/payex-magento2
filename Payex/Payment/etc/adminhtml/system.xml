@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="payment">
+            <group id="payex" translate="label" sortOrder="2" 
+                showInDefault="1" showInWebsite="1" showInStore="0">
+                <label><![CDATA[Payex&nbsp;&nbsp;<i>Accept Online Banking, Cards, eWallets and Instalments using Payex.</i>]]></label>
+                <comment>
+                    <![CDATA[<a href="https://portal.payex.io/Home/Register/" target="_blank">Click here to Sign up for Payex account</a>]]>
+                </comment>
+                <field id="active" translate="label comment" 
+                    sortOrder="10" type="select"
+                    showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="mode" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Environment</label>
+                    <source_model>Payex\Payment\Model\Config\Source\ListMode</source_model>
+                </field>
+                <field id="title" translate="label comment" 
+                    sortOrder="30" type="text"
+                    showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                </field>  
+                <field id="description" type="textarea" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Description</label>
+                    <validate>validate-length minimum-length-1 maximum-length-160</validate>
+                    <tooltip>Enter a valid description max length 160 words</tooltip>
+                </field>
+                <field id="username" translate="label comment" sortOrder="50" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Username</label>
+                </field>
+
+                <field id="password" translate="label comment" sortOrder="60" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Secret</label>
+                </field>
+
+                <field id="allowspecific" translate="label" type="allowspecific" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Payment from Applicable Countries</label>
+                    <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
+                </field>
+                <field id="specificcountry" translate="label" type="multiselect" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Payment from Specific Countries</label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
