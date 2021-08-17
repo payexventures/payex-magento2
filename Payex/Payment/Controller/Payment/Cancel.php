@@ -92,13 +92,13 @@ class Cancel extends \Magento\Framework\App\Action\Action implements CsrfAwareAc
             return $this->_redirect('checkout/cart');
         } catch (\Exception $e) {
 
-            $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/payex_paymentt.log');
+            $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/payex_payment.log');
             $this->logger = new \Zend\Log\Logger();
             $this->logger->addWriter($writer);
             $this->logger->info($e->getMessage());
             $this->logger->info(json_encode($postData));
 
-            $this->messageManager->addErrorMessage(__('Payment was un-successful.  %1', $this->getRequest()->getParam('response', _("Please try again."))));
+            $this->messageManager->addErrorMessage(__('Payment was unsuccessful.  %1', $this->getRequest()->getParam('response', _("Please try again."))));
         }
         return $this->_redirect('checkout/onepage/failure');;
     }

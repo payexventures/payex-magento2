@@ -99,12 +99,7 @@ class Success extends \Magento\Framework\App\Action\Action implements CsrfAwareA
                 $comment .= "External Txn Id -> $external_txn_id";
                 $comment .= "Payment Intent -> $payment_intent";
                 $comment .= "Signature -> $signature";
-                // add information
-                /*$order->addCommentToStatusHistory(
-                    $comment,
-                    false,
-                    true
-                );*/
+
                 $status = Order::STATE_CANCELED;
                 if (in_array($auth_code, ['09', '99']) ){
                     $status = Order::STATE_PAYMENT_REVIEW;
@@ -124,7 +119,7 @@ class Success extends \Magento\Framework\App\Action\Action implements CsrfAwareA
                 if ($transaction) {
                     $transaction->setTxnId($txn_id);
                     $transaction->setAdditionalInformation(
-                        "Payex Transaction Id $payment_intent"
+                        "External Transaction Id $external_txn_id"
                     );
                     if($status == Order::STATE_PROCESSING){
                         $transaction->setAdditionalInformation(
@@ -173,7 +168,7 @@ class Success extends \Magento\Framework\App\Action\Action implements CsrfAwareA
                 }
             }
         } catch (\Exception $e) {
-            $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/payex_paymentt.log');
+            $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/payex_payment.log');
             $this->logger = new \Zend\Log\Logger();
             $this->logger->addWriter($writer);
             $this->logger->info(json_encode($this->getRequest()->getParams()));

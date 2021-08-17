@@ -43,12 +43,12 @@ class Failure extends \Magento\Framework\App\Action\Action implements CsrfAwareA
 
             $this->cancelCurrentOrder($errorMsg);
             if ($this->restoreQuote()) {
-                $this->messageManager->addErrorMessage(__("Payment un-successful. $errorMsg"));
+                $this->messageManager->addErrorMessage(__("Payment unsuccessful. $errorMsg"));
                 return $this->_redirect('checkout/cart');
             }
 
         } catch (\Exception $e) {
-            $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/payex_paymentt.log');
+            $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/payex_payment.log');
             $this->logger = new \Zend\Log\Logger();
             $this->logger->addWriter($writer);
             $this->logger->info($e->getMessage());
